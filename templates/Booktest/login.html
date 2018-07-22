@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/static/js/jquery-1.12.4.min.js"></script>
+
+    <script>
+        $(function () {
+            var username=$('#username').val();
+            var password=$('#password').val();
+            $('#butn').click(function () {
+                $.ajax({
+                    url:"/login_check",
+                    type:'GET',
+                    data:{"username":username,"password":password},
+                    datatype:'json'
+                }).done(function (data) {
+                    if (data.res==0){
+                        $('#checkuser').show().html("用户名错误")
+                    }
+
+                }).fail(function () {
+                    location.href='/login'
+                })
+            })
+
+        })
+
+    </script>
+    <style>
+        #checkuser{
+            display: none;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    用户名:<input type="text" id="username">
+    <div id="checkuser"></div>
+    密码:<input type="password" id="password">
+    <input type="button" value="提交" id="butn">
+</body>
+</html>

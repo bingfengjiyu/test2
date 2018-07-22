@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图书列表</title>
+</head>
+<body>
+<a href="/create">新增</a>
+{% for book in books %}
+    <li>
+        <a href="/detail{{ book.id }}">{{ book.btitle }}</a>
+        <a href="/delete{{ book.id }}">删除</a>
+    </li>
+    {% empty %}
+    没有图书信息
+{% endfor %}
+
+
+</body>
+</html>
